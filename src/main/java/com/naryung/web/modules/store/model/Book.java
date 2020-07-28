@@ -11,11 +11,9 @@ import lombok.Setter;
 public class Book {
 
 	private Long id;
-	
 	private String title;
-	
 	private String author;
-	
 	private Long pbId;
+	private String pbName;
 	
 }

@@ -28,6 +28,21 @@ public class BookController {
 		return bookService.getAll(pageable);
 	}
 	
+	@GetMapping("/pbId/{pbId}")
+	public List<Book> getBypbId(@PathVariable Long pbId) {
+		return bookService.getByPbId(pbId);
+	}
+	
+	@GetMapping("/title/{title}")
+	public List<Book> getByTitle(@PathVariable String title) {
+		return bookService.getByTitle(title);
+	}
+	
+	@GetMapping("/author/{author}")
+	public List<Book> getByAuthor(@PathVariable String author) {
+		return bookService.getByAuthor(author);
+	}
+	
 	@PostMapping("")
 	public Book createBook(@RequestBody Book b) {
 		return bookService.createBook(b);

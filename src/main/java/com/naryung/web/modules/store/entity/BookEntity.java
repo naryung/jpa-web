@@ -3,6 +3,7 @@ package com.naryung.web.modules.store.entity;
 import javax.persistence.*;
 
 import com.naryung.web.modules.store.model.Book;
+import com.naryung.web.modules.store.model.Publisher;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,15 +25,21 @@ public class BookEntity {
 	@Column(name = "AUTHOR")
 	private String author;
 	
-	@Column(name = "PB_ID")
-	private Long pbId;
+	@ManyToOne
+	@JoinColumn(name = "PB_ID")
+	private PublisherEntity publisher;
 	
 	public Book toBookDto() {
 		Book book = new Book();
+		
 		book.setId(this.id);
 		book.setTitle(this.title);
 		book.setAuthor(author);
-		book.setPbId(this.pbId);
+		
+		if(this.publisher != null) {
+			book.setPbId(this.publisher.getId());
+			book.setPbName(this.publisher.getName());
+		}
 		
 		return book;
 	}
